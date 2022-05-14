@@ -10,6 +10,7 @@ namespace assignment {
     // буфер памяти для операции слияния (merge)
     std::vector<int> buf(arr.size());
 
+    merge_sort(arr, 0, arr.size() - 1, buf);
     // забыл что-то здесь вызвать ...
   }
 
@@ -22,6 +23,10 @@ namespace assignment {
 
     // вычисляем индекс середины области
     const int middle = middle_of(start, stop);
+
+    merge_sort(arr, start, middle, buf);
+    merge_sort(arr, middle + 1, stop, buf);
+    merge(arr, start, middle, stop, buf);
 
     // рекурсивный вызов сортировки левой [start, middle] и правой [middle + 1, stop] подмассивов ...
     // слияния двух подмассивов [start, middle] и [middle + 1, stop] ...
